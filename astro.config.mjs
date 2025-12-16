@@ -1,6 +1,9 @@
 import { defineConfig } from 'astro/config';
+import markdoc from '@astrojs/markdoc';
+import react from '@astrojs/react';
+import keystatic from '@keystatic/astro';
 
-// Static site - no adapter needed for Cloudflare Pages
 export default defineConfig({
-  output: 'static',
+  integrations: [markdoc(), react(), keystatic()],
+  output: 'hybrid',
 });
