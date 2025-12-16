@@ -4,9 +4,9 @@ import yaml from 'js-yaml';
 import fs from 'node:fs';
 import path from 'node:path';
 
-// Load contact page content
+// Load contact page content from data folder (outside content collections)
 const contactContent = yaml.load(
-  fs.readFileSync(path.join(process.cwd(), 'src/content/pages/contact.yaml'), 'utf8')
+  fs.readFileSync(path.join(process.cwd(), 'src/data/pages/contact.yaml'), 'utf8')
 ) as Record<string, any>;
 ---
 

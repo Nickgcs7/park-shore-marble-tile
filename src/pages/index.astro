@@ -5,9 +5,9 @@ import yaml from 'js-yaml';
 import fs from 'node:fs';
 import path from 'node:path';
 
-// Load home page content
+// Load home page content from data folder (outside content collections)
 const homeContent = yaml.load(
-  fs.readFileSync(path.join(process.cwd(), 'src/content/pages/home.yaml'), 'utf8')
+  fs.readFileSync(path.join(process.cwd(), 'src/data/pages/home.yaml'), 'utf8')
 ) as Record<string, string>;
 
 const projects = await getCollection('projects');

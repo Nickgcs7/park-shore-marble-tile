@@ -58,7 +58,7 @@ export default config({
   singletons: {
     homePage: singleton({
       label: 'Home Page',
-      path: 'src/content/pages/home',
+      path: 'src/data/pages/home',
       format: { data: 'yaml' },
       schema: {
         title: fields.text({ label: 'Page Title' }),
@@ -74,7 +74,7 @@ export default config({
     }),
     contactPage: singleton({
       label: 'Contact Page',
-      path: 'src/content/pages/contact',
+      path: 'src/data/pages/contact',
       format: { data: 'yaml' },
       schema: {
         title: fields.text({ label: 'Page Title' }),
