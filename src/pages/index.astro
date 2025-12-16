@@ -5,13 +5,11 @@ import { getCollection } from 'astro:content';
 const projects = await getCollection('projects');
 const testimonials = await getCollection('testimonials');
 
-// Get featured projects (limit to 3)
 const featuredProjects = projects
   .filter(p => p.data.featured)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 3);
 
-// Get recent testimonials (limit to 2)
 const recentTestimonials = testimonials
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 2);
@@ -19,81 +17,84 @@ const recentTestimonials = testimonials
 
 <BaseLayout title="Home">
   <!-- Hero Section -->
-  <section style="text-align: center; padding: 4rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin: -2rem -2rem 4rem -2rem; border-radius: 0 0 16px 16px;">
-    <h1 style="font-size: 3rem; margin-bottom: 1rem; color: white;">Premium Marble & Tile Installation</h1>
-    <p style="font-size: 1.25rem; max-width: 600px; margin: 0 auto; opacity: 0.95;">
-      Transform your space with expert craftsmanship and premium materials
+  <section style="text-align: center; padding: 5rem 2rem; background: linear-gradient(135deg, #3e3593 0%, #5847b8 100%); color: white; margin: -2rem -2rem 4rem -2rem; border-radius: 0 0 16px 16px;">
+    <h1 style="font-size: 3.5rem; margin-bottom: 1rem; color: white; font-weight: 700; line-height: 1.2;">Premium Marble & Tile Installation</h1>
+    <p style="font-size: 1.35rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.95; line-height: 1.6;">
+      Family owned and operated, serving Naples, Bonita Springs, Marco Island, and Southwest Florida with expert craftsmanship since 2010
     </p>
-    <div style="margin-top: 2rem;">
-      <a href="/contact" style="display: inline-block; background: white; color: #667eea; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 0 0.5rem;">
-        Get Started
+    <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="/contact" style="display: inline-block; background: #c34d63; color: white; padding: 1.25rem 2.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(195, 77, 99, 0.3);">
+        Get Free Consultation
       </a>
-      <a href="/projects" style="display: inline-block; background: transparent; border: 2px solid white; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 0 0.5rem;">
-        View Projects
+      <a href="/projects" style="display: inline-block; background: transparent; border: 2px solid white; color: white; padding: 1.25rem 2.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; transition: all 0.2s;">
+        View Our Work
       </a>
     </div>
   </section>
 
   <!-- About Section -->
-  <section style="margin: 4rem 0;">
-    <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">About Park Shore Marble & Tile</h2>
-    <p style="font-size: 1.1rem; line-height: 1.8; color: #555; text-align: center; max-width: 800px; margin: 0 auto;">
-      Park Shore Marble & Tile brings decades of experience in premium stone and tile installation. 
-      We specialize in creating beautiful, lasting surfaces for both residential and commercial spaces. 
-      Our commitment to quality craftsmanship and customer satisfaction sets us apart.
-    </p>
+  <section style="margin: 5rem 0; text-align: center;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #3e3593; font-weight: 700;">Southwest Florida's Trusted Marble & Tile Experts</h2>
+      <p style="font-size: 1.2rem; line-height: 1.9; color: #555; margin-bottom: 2rem;">
+        Park Shore Marble & Tile is a family-owned, full-service installation company dedicated to transforming spaces throughout Naples, Marco Island, Bonita Springs, and Fort Myers. From elegant marble countertops to stunning tile work, we bring decades of expertise to every project—backed by premium materials, meticulous attention to detail, and a commitment to exceeding expectations.
+      </p>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: #666;">
+        Whether you're renovating your kitchen, designing a luxury bathroom, or completing a commercial space, our team provides personalized design assistance and professional installation from start to finish.
+      </p>
+    </div>
   </section>
 
   <!-- Services Section -->
-  <section style="margin: 4rem 0;">
-    <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Our Services</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-      <div style="padding: 2rem; border: 1px solid #ddd; border-radius: 8px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🪨</div>
-        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Marble Installation</h3>
-        <p>Premium marble selection and expert installation for countertops, floors, and walls.</p>
+  <section style="margin: 5rem 0; padding: 4rem 2rem; background: #f8f9fa; border-radius: 16px;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center; color: #3e3593; font-weight: 700;">Our Services</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; max-width: 1100px; margin: 0 auto;">
+      <div style="padding: 2.5rem; background: white; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid #dca135;">
+        <div style="font-size: 3.5rem; margin-bottom: 1.5rem;">💎</div>
+        <h3 style="margin-bottom: 1.25rem; font-size: 1.65rem; color: #3e3593; font-weight: 600;">Marble Installation</h3>
+        <p style="line-height: 1.7; color: #666;">Premium marble selection and expert installation for countertops, floors, backsplashes, and walls. Elegant, durable, and timeless.</p>
       </div>
-      <div style="padding: 2rem; border: 1px solid #ddd; border-radius: 8px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🔲</div>
-        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Tile Work</h3>
-        <p>Custom tile designs for bathrooms, kitchens, and commercial spaces.</p>
+      <div style="padding: 2.5rem; background: white; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid #c34d63;">
+        <div style="font-size: 3.5rem; margin-bottom: 1.5rem;">🔲</div>
+        <h3 style="margin-bottom: 1.25rem; font-size: 1.65rem; color: #3e3593; font-weight: 600;">Custom Tile Work</h3>
+        <p style="line-height: 1.7; color: #666;">From porcelain and ceramic to glass mosaics and waterjet designs—creating stunning patterns for kitchens, bathrooms, and beyond.</p>
       </div>
-      <div style="padding: 2rem; border: 1px solid #ddd; border-radius: 8px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">✨</div>
-        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Restoration</h3>
-        <p>Professional restoration and refinishing services for existing marble and tile.</p>
+      <div style="padding: 2.5rem; background: white; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid #3e3593;">
+        <div style="font-size: 3.5rem; margin-bottom: 1.5rem;">✨</div>
+        <h3 style="margin-bottom: 1.25rem; font-size: 1.65rem; color: #3e3593; font-weight: 600;">Restoration & Repair</h3>
+        <p style="line-height: 1.7; color: #666;">Professional restoration, polishing, scratch removal, and sealing services to bring your marble and tile surfaces back to life.</p>
       </div>
     </div>
-    <div style="text-align: center; margin-top: 2rem;">
-      <a href="/services" style="color: #667eea; font-weight: bold; text-decoration: none;">
-        View All Services →
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="/services" style="color: #c34d63; font-weight: 600; text-decoration: none; font-size: 1.15rem; border-bottom: 2px solid #c34d63; padding-bottom: 4px;">
+        Explore All Services →
       </a>
     </div>
   </section>
 
   <!-- Featured Projects Section -->
   {featuredProjects.length > 0 && (
-    <section style="margin: 4rem 0; padding: 3rem; background: #f8f9fa; border-radius: 8px;">
-      <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Featured Projects</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+    <section style="margin: 5rem 0;">
+      <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center; color: #3e3593; font-weight: 700;">Featured Projects</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
         {featuredProjects.map((project) => (
-          <article style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <article style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s;">
             {project.data.image && (
               <img 
                 src={project.data.image} 
                 alt={project.data.title}
-                style="width: 100%; height: 200px; object-fit: cover;"
+                style="width: 100%; height: 240px; object-fit: cover;"
               />
             )}
-            <div style="padding: 1.5rem;">
-              <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">{project.data.title}</h3>
-              <p style="color: #666; font-size: 0.9rem;">{project.data.description}</p>
+            <div style="padding: 2rem;">
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #3e3593; font-weight: 600;">{project.data.title}</h3>
+              <p style="color: #666; line-height: 1.7;">{project.data.description}</p>
             </div>
           </article>
         ))}
       </div>
-      <div style="text-align: center; margin-top: 2rem;">
-        <a href="/projects" style="color: #667eea; font-weight: bold; text-decoration: none;">
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="/projects" style="color: #c34d63; font-weight: 600; text-decoration: none; font-size: 1.15rem; border-bottom: 2px solid #c34d63; padding-bottom: 4px;">
           View All Projects →
         </a>
       </div>
@@ -102,16 +103,16 @@ const recentTestimonials = testimonials
 
   <!-- Testimonials Section -->
   {recentTestimonials.length > 0 && (
-    <section style="margin: 4rem 0;">
-      <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">What Our Clients Say</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+    <section style="margin: 5rem 0; padding: 4rem 2rem; background: linear-gradient(135deg, #3e3593 0%, #5847b8 100%); border-radius: 16px; color: white;">
+      <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center; color: white; font-weight: 700;">What Our Clients Say</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1000px; margin: 0 auto;">
         {recentTestimonials.map((testimonial) => (
-          <blockquote style="background: white; padding: 2rem; border-left: 4px solid #667eea; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            <p style="font-style: italic; margin-bottom: 1rem; line-height: 1.6;">"{testimonial.data.quote}"</p>
+          <blockquote style="background: rgba(255,255,255,0.95); padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-left: 5px solid #dca135; color: #333;">
+            <p style="font-style: italic; margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.05rem;">"{testimonial.data.quote}"</p>
             <footer>
-              <strong>{testimonial.data.name}</strong>
+              <strong style="color: #3e3593; font-size: 1.1rem;">{testimonial.data.name}</strong>
               {testimonial.data.projectType && (
-                <div style="color: #666; font-size: 0.9rem;">{testimonial.data.projectType}</div>
+                <div style="color: #666; font-size: 0.95rem; margin-top: 0.5rem;">{testimonial.data.projectType}</div>
               )}
             </footer>
           </blockquote>
@@ -120,22 +121,42 @@ const recentTestimonials = testimonials
     </section>
   )}
 
+  <!-- Service Area -->
+  <section style="margin: 5rem 0; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #3e3593; font-weight: 700;">Proudly Serving Southwest Florida</h2>
+    <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+      Naples • Marco Island • Bonita Springs • Estero • Fort Myers • Fort Myers Beach • Cape Coral
+    </p>
+  </section>
+
   <!-- CTA Section -->
-  <section style="background: #2c3e50; color: white; padding: 3rem; border-radius: 8px; margin: 4rem 0; text-align: center;">
-    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: white;">Ready to Transform Your Space?</h2>
-    <p style="margin-bottom: 2rem; font-size: 1.1rem; opacity: 0.9;">Contact us today for a free consultation and estimate</p>
-    <a href="/contact" style="display: inline-block; background: white; color: #2c3e50; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold;">
-      Get In Touch
+  <section style="background: #c34d63; color: white; padding: 4rem 2rem; border-radius: 16px; margin: 5rem 0; text-align: center; box-shadow: 0 8px 24px rgba(195, 77, 99, 0.3);">
+    <h2 style="font-size: 2.75rem; margin-bottom: 1.5rem; color: white; font-weight: 700;">Ready to Transform Your Space?</h2>
+    <p style="margin-bottom: 2.5rem; font-size: 1.25rem; opacity: 0.95; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto;">
+      Contact us today for a free consultation and discover how we can bring your vision to life with expert craftsmanship and premium materials.
+    </p>
+    <a href="/contact" style="display: inline-block; background: white; color: #c34d63; padding: 1.25rem 3rem; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.15rem; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+      Get Free Consultation
     </a>
   </section>
 </BaseLayout>
 
 <style>
   div:has(> h3) {
-    cursor: pointer;
+    cursor: default;
   }
   div:has(> h3):hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+  article:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  a[href="/contact"]:hover {
+    transform: translateY(-2px);
+  }
+  a[href="/projects"]:hover {
+    background: rgba(255,255,255,0.1);
   }
 </style>
