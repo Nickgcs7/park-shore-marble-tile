@@ -1,11 +1,6 @@
 import { defineConfig } from 'astro/config';
-import cloudflare from '@astrojs/cloudflare';
 
+// Static site - no adapter needed for Cloudflare Pages
 export default defineConfig({
   output: 'static',
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true
-    }
-  }),
 });
