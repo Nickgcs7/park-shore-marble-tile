@@ -1,79 +1,8 @@
-# Decap CMS Configuration
-# Simple GitHub authentication - uses your GitHub account directly
-
-backend:
-  name: github
-  repo: Nickgcs7/park-shore-marble-tile
-  branch: main
-
-# Where uploaded images are stored
-media_folder: "public/images/uploads"
-# URL path for accessing images
-public_folder: "/images/uploads"
-
-# Collections define the content types
-collections:
-  # Projects collection
-  - name: "projects"
-    label: "Projects"
-    label_singular: "Project"
-    folder: "src/content/projects"
-    create: true
-    slug: "{{slug}}"
-    editor:
-      preview: false
-    fields:
-      - {label: "Project Title", name: "title", widget: "string", hint: "Name of the project"}
-      - {label: "Description", name: "description", widget: "text", hint: "Brief description of the project"}
-      - {label: "Featured Image", name: "image", widget: "image", hint: "Upload a project photo"}
-      - {label: "Date Completed", name: "date", widget: "datetime", hint: "When was this project completed?"}
-      - {label: "Featured on Homepage", name: "featured", widget: "boolean", default: false, hint: "Show this project on the homepage?"}
-
-  # Testimonials collection
-  - name: "testimonials"
-    label: "Testimonials"
-    label_singular: "Testimonial"
-    folder: "src/content/testimonials"
-    create: true
-    slug: "{{slug}}"
-    editor:
-      preview: false
-    fields:
-      - {label: "Client Name", name: "name", widget: "string"}
-      - {label: "Testimonial", name: "quote", widget: "text", hint: "What did the client say?"}
-      - {label: "Project Type", name: "projectType", widget: "string", required: false, hint: "e.g., Kitchen Renovation, Bathroom Tile"}
-      - {label: "Date", name: "date", widget: "datetime"}
-
-  # Page content collection
-  - name: "pages"
-    label: "Page Content"
-    editor:
-      preview: false
-    files:
-      # Home page content
-      - label: "Home Page"
-        name: "home"
-        file: "src/content/pages/home.md"
-        fields:
-          - {label: "Page Title", name: "title", widget: "string"}
-          - {label: "Hero Heading", name: "heroHeading", widget: "string", hint: "Main headline on homepage"}
-          - {label: "Hero Subheading", name: "heroSubheading", widget: "text", hint: "Text below the main headline"}
-          - {label: "About Section", name: "aboutSection", widget: "markdown", hint: "Company description"}
-      
-      # Services page content
-      - label: "Services Page"
-        name: "services"
-        file: "src/content/pages/services.md"
-        fields:
-          - {label: "Page Title", name: "title", widget: "string"}
-          - {label: "Content", name: "body", widget: "markdown", hint: "Service descriptions and details"}
-      
-      # Contact page content
-      - label: "Contact Page"
-        name: "contact"
-        file: "src/content/pages/contact.md"
-        fields:
-          - {label: "Page Title", name: "title", widget: "string"}
-          - {label: "Contact Info", name: "body", widget: "markdown"}
-          - {label: "Email Address", name: "email", widget: "string"}
-          - {label: "Phone Number", name: "phone", widget: "string"}
+# DEPRECATED - DELETE THIS FILE
+# 
+# This was the old Decap CMS configuration.
+# It has been replaced by Keystatic (keystatic.config.ts in project root).
+#
+# The new CMS admin is at /keystatic instead of /admin
+#
+# DELETE THIS FILE and the entire public/admin/ directory.
