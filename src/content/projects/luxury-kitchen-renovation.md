@@ -1,6 +1,6 @@
 ---
-title: "Luxury Kitchen Renovation"
-description: "Complete marble countertop and backsplash installation featuring premium Calacatta marble. This project transformed a dated kitchen into a stunning, modern space."
+title: "Naples Bay Estate Kitchen Remodel"
+description: "Complete luxury kitchen transformation featuring Calacatta marble countertops, custom backsplash, and polished marble flooring. This waterfront estate now boasts a chef's kitchen with timeless elegance perfect for entertaining."
 image: "/images/uploads/sample-kitchen.jpg"
 date: 2024-11-15
 featured: true
