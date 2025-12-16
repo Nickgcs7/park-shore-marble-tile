@@ -1,19 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import yaml from 'js-yaml';
-import fs from 'node:fs';
-import path from 'node:path';
 
-// Load contact page content from data folder (outside content collections)
-const contactContent = yaml.load(
-  fs.readFileSync(path.join(process.cwd(), 'src/data/pages/contact.yaml'), 'utf8')
-) as Record<string, any>;
+// Import YAML content directly (Vite handles this at build time)
+import contactContent from '../data/pages/contact.yaml?raw';
+import yaml from 'js-yaml';
+
+const contact = yaml.load(contactContent) as Record<string, any>;
 ---
 
 <BaseLayout title="Contact">
-  <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #1e3a5f; font-weight: 700; text-align: center;">{contactContent.title}</h1>
+  <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #1e3a5f; font-weight: 700; text-align: center;">{contact.title}</h1>
   <p style="font-size: 1.2rem; text-align: center; color: #666; max-width: 700px; margin: 0 auto 4rem;">
-    {contactContent.subtitle}
+    {contact.subtitle}
   </p>
   
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin: 3rem 0;">
@@ -26,16 +24,16 @@ const contactContent = yaml.load(
       <div style="background: #f8f9fa; padding: 2.5rem; border-radius: 12px; margin-bottom: 2.5rem;">
         <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #1e3a5f; font-weight: 600;">Business Hours</h3>
         <div style="line-height: 2; color: #666;">
-          <p>{contactContent.businessHours.weekdays}</p>
-          <p>{contactContent.businessHours.saturday}</p>
-          <p>{contactContent.businessHours.sunday}</p>
+          <p>{contact.businessHours.weekdays}</p>
+          <p>{contact.businessHours.saturday}</p>
+          <p>{contact.businessHours.sunday}</p>
         </div>
       </div>
 
       <div style="padding: 2.5rem; background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%); border-radius: 12px; color: white;">
         <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: white; font-weight: 600;">Service Areas</h3>
         <p style="line-height: 1.9; opacity: 0.95;">
-          {contactContent.serviceAreas}
+          {contact.serviceAreas}
         </p>
       </div>
     </section>
