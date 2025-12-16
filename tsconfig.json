@@ -1,7 +1,1 @@
-{
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
-  }
-}
+// DELETE THIS FILE - not needed for basic Astro static site
