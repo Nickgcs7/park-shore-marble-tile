@@ -1,6 +1,6 @@
 ---
-title: "Master Bathroom Transformation"
-description: "Luxury spa-inspired bathroom featuring stunning marble flooring and custom tiled shower with intricate mosaic accents. Complete renovation showcasing timeless elegance."
+title: "Marco Island Spa Bathroom"
+description: "Elegant spa-inspired master bathroom featuring Italian marble flooring, custom mosaic tile shower, and premium stone accents. This coastal retreat combines luxury with coastal Florida living."
 image: "/images/uploads/sample-bathroom.jpg"
 date: 2024-10-20
 featured: false
