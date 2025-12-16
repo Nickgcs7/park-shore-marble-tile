@@ -12,7 +12,7 @@ export default config({
       label: 'Projects',
       slugField: 'title',
       path: 'src/content/projects/*',
-      format: { contentField: 'description' },
+      format: { data: 'yaml' },
       schema: {
         title: fields.slug({ name: { label: 'Project Title' } }),
         description: fields.text({
@@ -38,7 +38,7 @@ export default config({
       label: 'Testimonials',
       slugField: 'name',
       path: 'src/content/testimonials/*',
-      format: { contentField: 'quote' },
+      format: { data: 'yaml' },
       schema: {
         name: fields.slug({ name: { label: 'Client Name' } }),
         quote: fields.text({
