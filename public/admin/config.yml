@@ -1,59 +1,84 @@
+# Decap CMS Configuration
+# Documentation: https://decapcms.org/docs/
+
 backend:
   name: github
   repo: Nickgcs7/park-shore-marble-tile
   branch: main
 
+# Local development: uncomment below and run `npx decap-server`
+# backend:
+#   name: proxy
+#   proxy_url: http://localhost:8081/api/v1
+
+# Where uploaded images are stored
 media_folder: "public/images/uploads"
+# URL path for accessing images
 public_folder: "/images/uploads"
 
+# Collections define the content types
 collections:
+  # Projects collection
   - name: "projects"
     label: "Projects"
+    label_singular: "Project"
     folder: "src/content/projects"
     create: true
     slug: "{{slug}}"
+    editor:
+      preview: false
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Featured Image", name: "image", widget: "image"}
-      - {label: "Date Completed", name: "date", widget: "datetime"}
-      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+      - {label: "Project Title", name: "title", widget: "string", hint: "Name of the project"}
+      - {label: "Description", name: "description", widget: "text", hint: "Brief description of the project"}
+      - {label: "Featured Image", name: "image", widget: "image", hint: "Upload a project photo"}
+      - {label: "Date Completed", name: "date", widget: "datetime", hint: "When was this project completed?"}
+      - {label: "Featured on Homepage", name: "featured", widget: "boolean", default: false, hint: "Show this project on the homepage?"}
 
+  # Testimonials collection
   - name: "testimonials"
     label: "Testimonials"
+    label_singular: "Testimonial"
     folder: "src/content/testimonials"
     create: true
     slug: "{{slug}}"
+    editor:
+      preview: false
     fields:
       - {label: "Client Name", name: "name", widget: "string"}
-      - {label: "Testimonial", name: "quote", widget: "text"}
-      - {label: "Project Type", name: "projectType", widget: "string", required: false}
+      - {label: "Testimonial", name: "quote", widget: "text", hint: "What did the client say?"}
+      - {label: "Project Type", name: "projectType", widget: "string", required: false, hint: "e.g., Kitchen Renovation, Bathroom Tile"}
       - {label: "Date", name: "date", widget: "datetime"}
 
+  # Page content collection
   - name: "pages"
-    label: "Pages"
+    label: "Page Content"
+    editor:
+      preview: false
     files:
+      # Home page content
       - label: "Home Page"
         name: "home"
         file: "src/content/pages/home.md"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Hero Heading", name: "heroHeading", widget: "string"}
-          - {label: "Hero Subheading", name: "heroSubheading", widget: "text"}
-          - {label: "About Section", name: "aboutSection", widget: "markdown"}
+          - {label: "Page Title", name: "title", widget: "string"}
+          - {label: "Hero Heading", name: "heroHeading", widget: "string", hint: "Main headline on homepage"}
+          - {label: "Hero Subheading", name: "heroSubheading", widget: "text", hint: "Text below the main headline"}
+          - {label: "About Section", name: "aboutSection", widget: "markdown", hint: "Company description"}
       
+      # Services page content
       - label: "Services Page"
         name: "services"
         file: "src/content/pages/services.md"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Content", name: "body", widget: "markdown"}
+          - {label: "Page Title", name: "title", widget: "string"}
+          - {label: "Content", name: "body", widget: "markdown", hint: "Service descriptions and details"}
       
+      # Contact page content
       - label: "Contact Page"
         name: "contact"
         file: "src/content/pages/contact.md"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Page Title", name: "title", widget: "string"}
           - {label: "Contact Info", name: "body", widget: "markdown"}
-          - {label: "Email", name: "email", widget: "string"}
-          - {label: "Phone", name: "phone", widget: "string"}
+          - {label: "Email Address", name: "email", widget: "string"}
+          - {label: "Phone Number", name: "phone", widget: "string"}
