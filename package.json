@@ -1,0 +1,19 @@
+{
+  "name": "park-shore-marble-tile",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.16.17",
+    "@astrojs/cloudflare": "^11.1.2"
+  },
+  "devDependencies": {
+    "netlify-cms-app": "^2.15.72",
+    "netlify-identity-widget": "^1.9.2"
+  }
+}
