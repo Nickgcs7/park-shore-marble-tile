@@ -1,47 +1,141 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const testimonials = await getCollection('testimonials');
+
+// Get featured projects (limit to 3)
+const featuredProjects = projects
+  .filter(p => p.data.featured)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+
+// Get recent testimonials (limit to 2)
+const recentTestimonials = testimonials
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 2);
 ---
 
 <BaseLayout title="Home">
-  <section style="text-align: center; padding: 4rem 0;">
-    <h1 style="font-size: 3rem; margin-bottom: 1rem;">Premium Marble & Tile Installation</h1>
-    <p style="font-size: 1.25rem; color: #666; max-width: 600px; margin: 0 auto;">
+  <!-- Hero Section -->
+  <section style="text-align: center; padding: 4rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin: -2rem -2rem 4rem -2rem; border-radius: 0 0 16px 16px;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem; color: white;">Premium Marble & Tile Installation</h1>
+    <p style="font-size: 1.25rem; max-width: 600px; margin: 0 auto; opacity: 0.95;">
       Transform your space with expert craftsmanship and premium materials
     </p>
+    <div style="margin-top: 2rem;">
+      <a href="/contact" style="display: inline-block; background: white; color: #667eea; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 0 0.5rem;">
+        Get Started
+      </a>
+      <a href="/projects" style="display: inline-block; background: transparent; border: 2px solid white; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 0 0.5rem;">
+        View Projects
+      </a>
+    </div>
   </section>
 
+  <!-- About Section -->
   <section style="margin: 4rem 0;">
-    <h2 style="font-size: 2rem; margin-bottom: 2rem;">About Us</h2>
-    <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+    <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">About Park Shore Marble & Tile</h2>
+    <p style="font-size: 1.1rem; line-height: 1.8; color: #555; text-align: center; max-width: 800px; margin: 0 auto;">
       Park Shore Marble & Tile brings decades of experience in premium stone and tile installation. 
       We specialize in creating beautiful, lasting surfaces for both residential and commercial spaces. 
       Our commitment to quality craftsmanship and customer satisfaction sets us apart.
     </p>
   </section>
 
+  <!-- Services Section -->
   <section style="margin: 4rem 0;">
-    <h2 style="font-size: 2rem; margin-bottom: 2rem;">Our Services</h2>
+    <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Our Services</h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-      <div style="padding: 1.5rem; border: 1px solid #ddd; border-radius: 8px;">
-        <h3 style="margin-bottom: 1rem;">Marble Installation</h3>
+      <div style="padding: 2rem; border: 1px solid #ddd; border-radius: 8px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🪨</div>
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Marble Installation</h3>
         <p>Premium marble selection and expert installation for countertops, floors, and walls.</p>
       </div>
-      <div style="padding: 1.5rem; border: 1px solid #ddd; border-radius: 8px;">
-        <h3 style="margin-bottom: 1rem;">Tile Work</h3>
+      <div style="padding: 2rem; border: 1px solid #ddd; border-radius: 8px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🔲</div>
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Tile Work</h3>
         <p>Custom tile designs for bathrooms, kitchens, and commercial spaces.</p>
       </div>
-      <div style="padding: 1.5rem; border: 1px solid #ddd; border-radius: 8px;">
-        <h3 style="margin-bottom: 1rem;">Restoration</h3>
+      <div style="padding: 2rem; border: 1px solid #ddd; border-radius: 8px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">✨</div>
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Restoration</h3>
         <p>Professional restoration and refinishing services for existing marble and tile.</p>
       </div>
     </div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="/services" style="color: #667eea; font-weight: bold; text-decoration: none;">
+        View All Services →
+      </a>
+    </div>
   </section>
 
-  <section style="background: #f8f9fa; padding: 3rem; border-radius: 8px; margin: 4rem 0; text-align: center;">
-    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Ready to Transform Your Space?</h2>
-    <p style="margin-bottom: 2rem; font-size: 1.1rem;">Contact us today for a consultation</p>
-    <a href="/contact" style="display: inline-block; background: #2c3e50; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold;">
+  <!-- Featured Projects Section -->
+  {featuredProjects.length > 0 && (
+    <section style="margin: 4rem 0; padding: 3rem; background: #f8f9fa; border-radius: 8px;">
+      <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Featured Projects</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        {featuredProjects.map((project) => (
+          <article style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            {project.data.image && (
+              <img 
+                src={project.data.image} 
+                alt={project.data.title}
+                style="width: 100%; height: 200px; object-fit: cover;"
+              />
+            )}
+            <div style="padding: 1.5rem;">
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">{project.data.title}</h3>
+              <p style="color: #666; font-size: 0.9rem;">{project.data.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="/projects" style="color: #667eea; font-weight: bold; text-decoration: none;">
+          View All Projects →
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- Testimonials Section -->
+  {recentTestimonials.length > 0 && (
+    <section style="margin: 4rem 0;">
+      <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">What Our Clients Say</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        {recentTestimonials.map((testimonial) => (
+          <blockquote style="background: white; padding: 2rem; border-left: 4px solid #667eea; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <p style="font-style: italic; margin-bottom: 1rem; line-height: 1.6;">"{testimonial.data.quote}"</p>
+            <footer>
+              <strong>{testimonial.data.name}</strong>
+              {testimonial.data.projectType && (
+                <div style="color: #666; font-size: 0.9rem;">{testimonial.data.projectType}</div>
+              )}
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- CTA Section -->
+  <section style="background: #2c3e50; color: white; padding: 3rem; border-radius: 8px; margin: 4rem 0; text-align: center;">
+    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: white;">Ready to Transform Your Space?</h2>
+    <p style="margin-bottom: 2rem; font-size: 1.1rem; opacity: 0.9;">Contact us today for a free consultation and estimate</p>
+    <a href="/contact" style="display: inline-block; background: white; color: #2c3e50; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold;">
       Get In Touch
     </a>
   </section>
 </BaseLayout>
+
+<style>
+  div:has(> h3) {
+    cursor: pointer;
+  }
+  div:has(> h3):hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+</style>
