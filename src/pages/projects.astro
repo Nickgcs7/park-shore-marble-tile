@@ -9,47 +9,72 @@ const sortedProjects = projects.sort((a, b) =>
 ---
 
 <BaseLayout title="Projects">
-  <h1 style="font-size: 2.5rem; margin-bottom: 2rem;">Our Projects</h1>
-  <p style="font-size: 1.1rem; color: #666; margin-bottom: 3rem;">
-    Browse our portfolio of completed projects showcasing our craftsmanship and attention to detail.
+  <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #3e3593; font-weight: 700; text-align: center;">Our Projects</h1>
+  <p style="font-size: 1.2rem; color: #666; margin-bottom: 4rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+    Explore our portfolio of completed installations throughout Naples, Marco Island, Bonita Springs, and Southwest Florida
   </p>
 
   {sortedProjects.length === 0 ? (
-    <div style="text-align: center; padding: 4rem 2rem; background: #f8f9fa; border-radius: 8px;">
-      <p style="font-size: 1.2rem; color: #666;">No projects to display yet. Check back soon!</p>
+    <div style="text-align: center; padding: 5rem 2rem; background: #f8f9fa; border-radius: 16px; margin: 3rem 0;">
+      <div style="font-size: 4rem; margin-bottom: 1.5rem; opacity: 0.5;">📸</div>
+      <h2 style="font-size: 1.75rem; margin-bottom: 1rem; color: #3e3593;">More Projects Coming Soon</h2>
+      <p style="font-size: 1.15rem; color: #666; max-width: 600px; margin: 0 auto 2rem;">
+        We're currently updating our gallery with stunning new installations. Check back soon to see our latest work!
+      </p>
+      <a href="/contact" style="display: inline-block; background: #c34d63; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.2s;">
+        Start Your Project
+      </a>
     </div>
   ) : (
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2.5rem;">
       {sortedProjects.map((project) => (
-        <article style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; transition: transform 0.2s;">
+        <article style="border-radius: 12px; overflow: hidden; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.08); background: white;">
           {project.data.image && (
-            <img 
-              src={project.data.image} 
-              alt={project.data.title}
-              style="width: 100%; height: 250px; object-fit: cover;"
-            />
+            <div style="position: relative; overflow: hidden;">
+              <img 
+                src={project.data.image} 
+                alt={project.data.title}
+                style="width: 100%; height: 280px; object-fit: cover; transition: transform 0.3s;"
+              />
+              {project.data.featured && (
+                <div style="position: absolute; top: 1rem; right: 1rem; background: #dca135; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                  Featured
+                </div>
+              )}
+            </div>
           )}
-          <div style="padding: 1.5rem;">
-            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">{project.data.title}</h2>
-            <p style="color: #666; margin-bottom: 1rem;">
+          <div style="padding: 2rem;">
+            <h2 style="font-size: 1.65rem; margin-bottom: 0.75rem; color: #3e3593; font-weight: 600;">{project.data.title}</h2>
+            <p style="color: #c34d63; margin-bottom: 1.25rem; font-weight: 500; font-size: 0.95rem;">
               {new Date(project.data.date).toLocaleDateString('en-US', { 
                 year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+                month: 'long'
               })}
             </p>
-            <p style="line-height: 1.6;">{project.data.description}</p>
+            <p style="line-height: 1.7; color: #666;">{project.data.description}</p>
           </div>
         </article>
       ))}
     </div>
   )}
 
-  <section style="margin-top: 4rem; text-align: center; background: #f8f9fa; padding: 3rem; border-radius: 8px;">
-    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Start Your Project Today</h2>
-    <p style="margin-bottom: 2rem; font-size: 1.1rem;">Let's discuss how we can transform your space</p>
-    <a href="/contact" style="display: inline-block; background: #2c3e50; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold;">
-      Contact Us
+  <section style="margin-top: 6rem; text-align: center; background: linear-gradient(135deg, #3e3593 0%, #5847b8 100%); padding: 4rem 2rem; border-radius: 16px; color: white;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: white; font-weight: 700;">Start Your Project Today</h2>
+    <p style="margin-bottom: 2.5rem; font-size: 1.2rem; opacity: 0.95; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto;">
+      Ready to transform your space with beautiful marble and tile? Let's discuss your vision and bring it to life.
+    </p>
+    <a href="/contact" style="display: inline-block; background: #c34d63; color: white; padding: 1.25rem 3rem; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.15rem; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+      Request Free Consultation
     </a>
   </section>
 </BaseLayout>
+
+<style>
+  article:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+  article:hover img {
+    transform: scale(1.05);
+  }
+</style>
