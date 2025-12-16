@@ -1,109 +1,83 @@
-# Park Shore Marble & Tile - Portfolio Website
+# Park Shore Marble & Tile
 
-A modern, static portfolio website built with Astro and Decap CMS, hosted on Cloudflare Pages.
+A static website for Park Shore Marble & Tile, a family-owned marble and tile installation company serving Southwest Florida.
 
-## 🎯 Features
+**Live Site:** https://park-shore-marble-tile.pages.dev
 
-- **Static Site** - Fast, secure, and SEO-friendly
-- **Content Management** - Easy-to-use CMS at `/admin`
-- **Responsive Design** - Works on all devices
-- **Free Hosting** - Cloudflare Pages (unlimited bandwidth)
-- **Automatic Deployments** - Push to GitHub → Live in 2 minutes
+## Tech Stack
 
-## 🚀 Quick Start
+- **Framework:** [Astro](https://astro.build) (static site generator)
+- **Hosting:** Cloudflare Pages
+- **Contact Form:** FormSubmit.co → parkshoremarble@gmail.com
 
-```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-```
-
-Visit `http://localhost:4321` to see the site locally.
-
-## 📁 Project Structure
+## Project Structure
 
 ```
-/
 ├── public/
-│   ├── admin/          # Decap CMS admin interface
-│   └── images/         # Static images
+│   └── images/uploads/     # Project photos
 ├── src/
 │   ├── content/
-│   │   ├── projects/       # Project showcase entries
-│   │   ├── testimonials/   # Customer testimonials
-│   │   └── pages/          # Page content (Home, Services, Contact)
-│   ├── layouts/            # Page layouts
-│   └── pages/              # Site pages
-├── functions/              # Cloudflare Pages Functions (contact form)
-├── astro.config.mjs        # Astro configuration
+│   │   ├── projects/       # Project entries (.md files)
+│   │   └── testimonials/   # Testimonial entries (.md files)
+│   ├── layouts/
+│   │   └── BaseLayout.astro
+│   └── pages/
+│       ├── index.astro     # Homepage
+│       ├── services.astro  # Services page
+│       ├── projects.astro  # Projects gallery
+│       ├── contact.astro   # Contact form
+│       └── thank-you.astro # Form confirmation
+├── astro.config.mjs
 └── package.json
 ```
 
-## 📝 Content Management
+## How to Edit Content
 
-Access the CMS at `/admin` on your live site.
+### Edit Page Content
+1. Go to GitHub → `src/pages/`
+2. Click on the `.astro` file you want to edit
+3. Click the pencil icon to edit
+4. Commit changes → site auto-deploys
 
-**What you can edit:**
-- ✅ Projects - Add/edit completed projects with images
-- ✅ Testimonials - Add/edit customer testimonials
-- ✅ Page Content - Edit home, services, and contact pages
+### Add a New Project
+1. Upload image to `public/images/uploads/`
+2. Create new `.md` file in `src/content/projects/`
+3. Use this format:
 
-**Authentication:**
-- Login with GitHub account
-- Must be a repository collaborator
+```markdown
+---
+title: "Project Title"
+description: "Brief description of the project."
+image: "/images/uploads/your-image.jpg"
+date: 2024-12-01
+featured: true
+---
+```
 
-## 🌐 Deployment
+- `featured: true` → Shows on homepage
+- `featured: false` → Shows only on Projects page
 
-### Cloudflare Pages Setup
+### Add a Testimonial
+Create new `.md` file in `src/content/testimonials/`:
 
-1. Connect your GitHub repository to Cloudflare Pages
-2. Build settings:
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-   - **Framework preset:** Astro
-3. Deploy!
+```markdown
+---
+name: "Client Name"
+quote: "Their testimonial quote here."
+projectType: "Kitchen Renovation"
+date: 2024-12-01
+---
+```
 
-Your site will be live at: `https://your-project.pages.dev`
+## Local Development
 
-## 📧 Contact Form Setup
+```bash
+npm install
+npm run dev
+```
 
-The contact form requires an email service to be configured.
+Site runs at `http://localhost:4321`
 
-**Recommended: Resend** (Free tier - 100 emails/day)
+## Deployment
 
-1. Sign up at [resend.com](https://resend.com)
-2. Get your API key
-3. Add to Cloudflare Pages Environment Variables:
-   - `RESEND_API_KEY`: your-api-key
-4. Update email addresses in `functions/api/contact.js`
-
-See `SETUP.md` for detailed instructions.
-
-## 📚 Documentation
-
-- **[SETUP.md](./SETUP.md)** - Complete deployment guide
-- **[SITE-REVIEW.md](./SITE-REVIEW.md)** - Site structure and features
-
-## 🛠️ Tech Stack
-
-- **[Astro](https://astro.build)** - Static site framework
-- **[Decap CMS](https://decapcms.org)** - Git-based CMS
-- **[Cloudflare Pages](https://pages.cloudflare.com)** - Hosting & Functions
-- **GitHub** - Version control & authentication
-
-## 💰 Cost
-
-**Total: $0/month**
-- Hosting: Free (Cloudflare Pages)
-- CMS: Free (Decap CMS)
-- Repository: Free (GitHub)
-- Email: Free tier (Resend - 100/day)
-
-## 📄 License
-
-MIT
+Auto-deploys to Cloudflare Pages on every push to `main` branch.
