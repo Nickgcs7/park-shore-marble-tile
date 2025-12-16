@@ -9,136 +9,318 @@ const contact = yaml.load(contactContent) as Record<string, any>;
 ---
 
 <BaseLayout title="Contact">
-  <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #1e3a5f; font-weight: 700; text-align: center;">{contact.title}</h1>
-  <p style="font-size: 1.2rem; text-align: center; color: #666; max-width: 700px; margin: 0 auto 4rem;">
-    {contact.subtitle}
-  </p>
+  <div class="contact-header">
+    <h1>{contact.title}</h1>
+    <p>{contact.subtitle}</p>
+  </div>
   
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin: 3rem 0;">
-    <section>
-      <h2 style="font-size: 2rem; margin-bottom: 2rem; color: #1e3a5f; font-weight: 700;">Get In Touch</h2>
-      <p style="line-height: 1.8; color: #555; margin-bottom: 2.5rem; font-size: 1.1rem;">
+  <div class="contact-grid">
+    <section class="contact-info">
+      <h2>Get In Touch</h2>
+      <p class="intro">
         Whether you're planning a kitchen remodel, bathroom renovation, or commercial project, our team is here to help. Fill out the form and we'll get back to you within 24 hours.
       </p>
       
-      <div style="background: #f8f9fa; padding: 2.5rem; border-radius: 12px; margin-bottom: 2.5rem;">
-        <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #1e3a5f; font-weight: 600;">Business Hours</h3>
-        <div style="line-height: 2; color: #666;">
+      <div class="hours-box">
+        <h3>Business Hours</h3>
+        <div class="hours">
           <p>{contact.businessHours.weekdays}</p>
           <p>{contact.businessHours.saturday}</p>
           <p>{contact.businessHours.sunday}</p>
         </div>
       </div>
 
-      <div style="padding: 2.5rem; background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%); border-radius: 12px; color: white;">
-        <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: white; font-weight: 600;">Service Areas</h3>
-        <p style="line-height: 1.9; opacity: 0.95;">
-          {contact.serviceAreas}
-        </p>
+      <div class="service-box">
+        <h3>Service Areas</h3>
+        <p>{contact.serviceAreas}</p>
       </div>
     </section>
 
-    <section>
-      <form id="contact-form" style="display: flex; flex-direction: column; gap: 1.75rem; background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-        <div>
-          <label for="name" style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: #1e3a5f; font-size: 1.05rem;">Name *</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            required
-            style="width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; transition: all 0.2s; font-family: 'Open Sans', sans-serif;"
-          />
+    <section class="contact-form-section">
+      <form id="contact-form">
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" required />
         </div>
 
-        <div>
-          <label for="email" style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: #1e3a5f; font-size: 1.05rem;">Email *</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            required
-            style="width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; transition: all 0.2s; font-family: 'Open Sans', sans-serif;"
-          />
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required />
         </div>
 
-        <div>
-          <label for="phone" style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: #1e3a5f; font-size: 1.05rem;">Phone</label>
-          <input 
-            type="tel" 
-            id="phone" 
-            name="phone"
-            style="width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; transition: all 0.2s; font-family: 'Open Sans', sans-serif;"
-          />
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" />
         </div>
 
-        <div>
-          <label for="message" style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: #1e3a5f; font-size: 1.05rem;">Tell us about your project *</label>
+        <div class="form-group">
+          <label for="message">Tell us about your project *</label>
           <textarea 
             id="message" 
             name="message" 
             rows="6" 
             required
             placeholder="Please describe your project, timeline, and any specific requirements..."
-            style="width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.2s; font-family: 'Open Sans', sans-serif;"
           ></textarea>
         </div>
 
-        <button 
-          type="submit"
-          style="background: #c34d63; color: white; padding: 1.25rem 2rem; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(195, 77, 99, 0.3); font-family: 'Montserrat', sans-serif;"
-        >
-          Send Message
-        </button>
+        <button type="submit">Send Message</button>
 
-        <div id="form-message" style="display: none; padding: 1.25rem; border-radius: 8px; font-weight: 500;"></div>
+        <div id="form-message"></div>
       </form>
     </section>
   </div>
 
-  <section style="margin: 6rem 0; padding: 4rem 3rem; background: #f8f9fa; border-radius: 16px; text-align: center;">
-    <h2 style="font-size: 2.25rem; margin-bottom: 1.5rem; color: #1e3a5f; font-weight: 700;">What Happens Next?</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; margin-top: 3rem;">
-      <div>
-        <div style="width: 60px; height: 60px; background: #1e3a5f; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; color: white; font-size: 1.75rem; font-weight: 700;">1</div>
-        <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: #1e3a5f; font-weight: 600;">We'll Respond</h3>
-        <p style="color: #666; line-height: 1.7;">Within 24 hours, we'll reach out to discuss your project</p>
+  <section class="process">
+    <h2>What Happens Next?</h2>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-number" style="background: #1e3a5f;">1</div>
+        <h3>We'll Respond</h3>
+        <p>Within 24 hours, we'll reach out to discuss your project</p>
       </div>
-      <div>
-        <div style="width: 60px; height: 60px; background: #c34d63; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; color: white; font-size: 1.75rem; font-weight: 700;">2</div>
-        <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: #1e3a5f; font-weight: 600;">Free Consultation</h3>
-        <p style="color: #666; line-height: 1.7;">Schedule an in-person meeting to discuss your vision</p>
+      <div class="process-step">
+        <div class="step-number" style="background: #c34d63;">2</div>
+        <h3>Free Consultation</h3>
+        <p>Schedule an in-person meeting to discuss your vision</p>
       </div>
-      <div>
-        <div style="width: 60px; height: 60px; background: #dca135; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; color: white; font-size: 1.75rem; font-weight: 700;">3</div>
-        <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: #1e3a5f; font-weight: 600;">Get Your Quote</h3>
-        <p style="color: #666; line-height: 1.7;">Receive a detailed estimate for your project</p>
+      <div class="process-step">
+        <div class="step-number" style="background: #dca135;">3</div>
+        <h3>Get Your Quote</h3>
+        <p>Receive a detailed estimate for your project</p>
       </div>
-      <div>
-        <div style="width: 60px; height: 60px; background: #1e3a5f; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; color: white; font-size: 1.75rem; font-weight: 700;">4</div>
-        <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: #1e3a5f; font-weight: 600;">Begin Work</h3>
-        <p style="color: #666; line-height: 1.7;">Our team starts transforming your space</p>
+      <div class="process-step">
+        <div class="step-number" style="background: #1e3a5f;">4</div>
+        <h3>Begin Work</h3>
+        <p>Our team starts transforming your space</p>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  input:focus, textarea:focus {
+  .contact-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .contact-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.75rem;
+    color: #1e3a5f;
+    font-weight: 700;
+  }
+
+  .contact-header p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin: 2rem 0;
+  }
+
+  .contact-info h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: #1e3a5f;
+    font-weight: 700;
+  }
+
+  .contact-info .intro {
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+  }
+
+  .hours-box {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .hours-box h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #1e3a5f;
+    font-weight: 600;
+  }
+
+  .hours {
+    line-height: 2;
+    color: #666;
+  }
+
+  .service-box {
+    padding: 2rem;
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
+    border-radius: 12px;
+    color: white;
+  }
+
+  .service-box h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .service-box p {
+    line-height: 1.9;
+    opacity: 0.95;
+  }
+
+  .contact-form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: #1e3a5f;
+    font-size: 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
     outline: none;
     border-color: #1e3a5f;
     box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
   }
-  
+
+  button[type="submit"] {
+    background: #c34d63;
+    color: white;
+    padding: 1.25rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(195, 77, 99, 0.3);
+    font-family: 'Montserrat', sans-serif;
+  }
+
   button[type="submit"]:hover {
     background: #a83d52;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(195, 77, 99, 0.4);
   }
 
+  #form-message {
+    display: none;
+    padding: 1.25rem;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+
+  .process {
+    margin: 4rem 0;
+    padding: 3rem 2rem;
+    background: #f8f9fa;
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  .process h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    margin-bottom: 2.5rem;
+    color: #1e3a5f;
+    font-weight: 700;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .process-step {
+    text-align: center;
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .process-step h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+    color: #1e3a5f;
+    font-weight: 600;
+  }
+
+  .process-step p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  /* Mobile */
   @media (max-width: 768px) {
-    div[style*="grid-template-columns: 1fr 1fr"] {
-      grid-template-columns: 1fr !important;
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .contact-form-section form {
+      padding: 1.5rem;
+    }
+
+    .process {
+      padding: 2rem 1rem;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      border-radius: 0;
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .process-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

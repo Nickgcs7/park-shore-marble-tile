@@ -9,72 +9,246 @@ const sortedProjects = projects.sort((a, b) =>
 ---
 
 <BaseLayout title="Projects">
-  <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #1e3a5f; font-weight: 700; text-align: center;">Our Projects</h1>
-  <p style="font-size: 1.2rem; color: #666; margin-bottom: 4rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
-    Explore our portfolio of completed installations throughout Naples, Marco Island, Bonita Springs, and Southwest Florida
-  </p>
+  <div class="page-header">
+    <h1>Our Projects</h1>
+    <p>Explore our portfolio of completed installations throughout Naples, Marco Island, Bonita Springs, and Southwest Florida</p>
+  </div>
 
   {sortedProjects.length === 0 ? (
-    <div style="text-align: center; padding: 5rem 2rem; background: #f8f9fa; border-radius: 16px; margin: 3rem 0;">
-      <div style="font-size: 4rem; margin-bottom: 1.5rem; opacity: 0.5;">📸</div>
-      <h2 style="font-size: 1.75rem; margin-bottom: 1rem; color: #1e3a5f;">More Projects Coming Soon</h2>
-      <p style="font-size: 1.15rem; color: #666; max-width: 600px; margin: 0 auto 2rem;">
-        We're currently updating our gallery with stunning new installations. Check back soon to see our latest work!
-      </p>
-      <a href="/contact" style="display: inline-block; background: #c34d63; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.2s;">
-        Start Your Project
-      </a>
+    <div class="empty-state">
+      <div class="empty-icon">📸</div>
+      <h2>More Projects Coming Soon</h2>
+      <p>We're currently updating our gallery with stunning new installations. Check back soon to see our latest work!</p>
+      <a href="/contact" class="btn-primary">Start Your Project</a>
     </div>
   ) : (
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2.5rem;">
+    <div class="projects-grid">
       {sortedProjects.map((project) => (
-        <article style="border-radius: 12px; overflow: hidden; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.08); background: white;">
+        <article class="project-card">
           {project.data.image && (
-            <div style="position: relative; overflow: hidden;">
-              <img 
-                src={project.data.image} 
-                alt={project.data.title}
-                style="width: 100%; height: 280px; object-fit: cover; transition: transform 0.3s;"
-              />
+            <div class="project-image">
+              <img src={project.data.image} alt={project.data.title} />
               {project.data.featured && (
-                <div style="position: absolute; top: 1rem; right: 1rem; background: #dca135; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-                  Featured
-                </div>
+                <span class="featured-badge">Featured</span>
               )}
             </div>
           )}
-          <div style="padding: 2rem;">
-            <h2 style="font-size: 1.65rem; margin-bottom: 0.75rem; color: #1e3a5f; font-weight: 600;">{project.data.title}</h2>
-            <p style="color: #c34d63; margin-bottom: 1.25rem; font-weight: 500; font-size: 0.95rem;">
+          <div class="project-info">
+            <h2>{project.data.title}</h2>
+            <p class="project-date">
               {new Date(project.data.date).toLocaleDateString('en-US', { 
                 year: 'numeric', 
                 month: 'long'
               })}
             </p>
-            <p style="line-height: 1.7; color: #666;">{project.data.description}</p>
+            <p class="project-desc">{project.data.description}</p>
           </div>
         </article>
       ))}
     </div>
   )}
 
-  <section style="margin-top: 6rem; text-align: center; background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%); padding: 4rem 2rem; border-radius: 16px; color: white;">
-    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: white; font-weight: 700;">Start Your Project Today</h2>
-    <p style="margin-bottom: 2.5rem; font-size: 1.2rem; opacity: 0.95; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto;">
-      Ready to transform your space with beautiful marble and tile? Let's discuss your vision and bring it to life.
-    </p>
-    <a href="/contact" style="display: inline-block; background: #c34d63; color: white; padding: 1.25rem 3rem; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.15rem; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-      Request Free Consultation
-    </a>
+  <section class="cta">
+    <h2>Start Your Project Today</h2>
+    <p>Ready to transform your space with beautiful marble and tile? Let's discuss your vision and bring it to life.</p>
+    <a href="/contact" class="btn-cta">Request Free Consultation</a>
   </section>
 </BaseLayout>
 
 <style>
-  article:hover {
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.75rem;
+    color: #1e3a5f;
+    font-weight: 700;
+  }
+
+  .page-header p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    border-radius: 16px;
+    margin: 2rem 0;
+  }
+
+  .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+  }
+
+  .empty-state h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: #1e3a5f;
+  }
+
+  .empty-state p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: #c34d63;
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #a83d52;
+    transform: translateY(-2px);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .project-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background: white;
+  }
+
+  .project-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 24px rgba(0,0,0,0.15);
   }
-  article:hover img {
+
+  .project-image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+
+  .project-card:hover .project-image img {
     transform: scale(1.05);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #dca135;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .project-info {
+    padding: 1.5rem;
+  }
+
+  .project-info h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #1e3a5f;
+    font-weight: 600;
+  }
+
+  .project-date {
+    color: #c34d63;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .project-desc {
+    line-height: 1.7;
+    color: #666;
+    font-size: 0.95rem;
+  }
+
+  .cta {
+    margin-top: 4rem;
+    text-align: center;
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    color: white;
+  }
+
+  .cta h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .cta p {
+    margin-bottom: 2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    opacity: 0.95;
+    line-height: 1.7;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+  }
+
+  .btn-cta {
+    display: inline-block;
+    background: #c34d63;
+    color: white;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .btn-cta:hover {
+    background: #a83d52;
+    transform: translateY(-2px);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project-image img {
+      height: 200px;
+    }
+
+    .cta {
+      padding: 2rem 1rem;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      border-radius: 0;
+    }
   }
 </style>

@@ -23,102 +23,84 @@ const recentTestimonials = testimonials
 
 <BaseLayout title="Home">
   <!-- Hero Section -->
-  <section style="text-align: center; padding: 5rem 2rem; background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%); color: white; margin: -2rem -2rem 4rem -2rem; border-radius: 0 0 16px 16px;">
-    <h1 style="font-size: 3.5rem; margin-bottom: 1rem; color: white; font-weight: 700; line-height: 1.2;">{home.heroHeading}</h1>
-    <p style="font-size: 1.35rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.95; line-height: 1.6;">
-      {home.heroSubheading}
-    </p>
-    <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a href="/contact" style="display: inline-block; background: #c34d63; color: white; padding: 1.25rem 2.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(195, 77, 99, 0.3);">
-        Get Free Consultation
-      </a>
-      <a href="/projects" style="display: inline-block; background: transparent; border: 2px solid white; color: white; padding: 1.25rem 2.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; transition: all 0.2s;">
-        View Our Work
-      </a>
+  <section class="hero">
+    <h1>{home.heroHeading}</h1>
+    <p>{home.heroSubheading}</p>
+    <div class="hero-buttons">
+      <a href="/contact" class="btn-primary">Get Free Consultation</a>
+      <a href="/projects" class="btn-secondary">View Our Work</a>
     </div>
   </section>
 
   <!-- About Section -->
-  <section style="margin: 5rem 0; text-align: center;">
-    <div style="max-width: 900px; margin: 0 auto;">
-      <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e3a5f; font-weight: 700;">{home.aboutHeading}</h2>
-      <p style="font-size: 1.2rem; line-height: 1.9; color: #555; margin-bottom: 2rem;">
-        {home.aboutText}
-      </p>
-      <p style="font-size: 1.1rem; line-height: 1.8; color: #666;">
-        {home.aboutText2}
-      </p>
+  <section class="about">
+    <div class="about-content">
+      <h2>{home.aboutHeading}</h2>
+      <p class="about-main">{home.aboutText}</p>
+      <p class="about-sub">{home.aboutText2}</p>
     </div>
   </section>
 
   <!-- Services Section -->
-  <section style="margin: 5rem 0; padding: 4rem 2rem; background: #f8f9fa; border-radius: 16px;">
-    <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center; color: #1e3a5f; font-weight: 700;">Our Services</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; max-width: 1100px; margin: 0 auto;">
-      <div style="padding: 2.5rem; background: white; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid #dca135;">
-        <div style="font-size: 3.5rem; margin-bottom: 1.5rem;">💎</div>
-        <h3 style="margin-bottom: 1.25rem; font-size: 1.65rem; color: #1e3a5f; font-weight: 600;">Marble Installation</h3>
-        <p style="line-height: 1.7; color: #666;">Premium marble selection and expert installation for countertops, floors, backsplashes, and walls. Elegant, durable, and timeless.</p>
+  <section class="services">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card" style="border-top-color: #dca135;">
+        <div class="service-icon">💎</div>
+        <h3>Marble Installation</h3>
+        <p>Premium marble selection and expert installation for countertops, floors, backsplashes, and walls. Elegant, durable, and timeless.</p>
       </div>
-      <div style="padding: 2.5rem; background: white; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid #c34d63;">
-        <div style="font-size: 3.5rem; margin-bottom: 1.5rem;">🔲</div>
-        <h3 style="margin-bottom: 1.25rem; font-size: 1.65rem; color: #1e3a5f; font-weight: 600;">Custom Tile Work</h3>
-        <p style="line-height: 1.7; color: #666;">From porcelain and ceramic to glass mosaics and waterjet designs—creating stunning patterns for kitchens, bathrooms, and beyond.</p>
+      <div class="service-card" style="border-top-color: #c34d63;">
+        <div class="service-icon">🔲</div>
+        <h3>Custom Tile Work</h3>
+        <p>From porcelain and ceramic to glass mosaics and waterjet designs—creating stunning patterns for kitchens, bathrooms, and beyond.</p>
       </div>
-      <div style="padding: 2.5rem; background: white; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid #1e3a5f;">
-        <div style="font-size: 3.5rem; margin-bottom: 1.5rem;">✨</div>
-        <h3 style="margin-bottom: 1.25rem; font-size: 1.65rem; color: #1e3a5f; font-weight: 600;">Restoration & Repair</h3>
-        <p style="line-height: 1.7; color: #666;">Professional restoration, polishing, scratch removal, and sealing services to bring your marble and tile surfaces back to life.</p>
+      <div class="service-card" style="border-top-color: #1e3a5f;">
+        <div class="service-icon">✨</div>
+        <h3>Restoration & Repair</h3>
+        <p>Professional restoration, polishing, scratch removal, and sealing services to bring your marble and tile surfaces back to life.</p>
       </div>
     </div>
-    <div style="text-align: center; margin-top: 3rem;">
-      <a href="/services" style="color: #c34d63; font-weight: 600; text-decoration: none; font-size: 1.15rem; border-bottom: 2px solid #c34d63; padding-bottom: 4px;">
-        Explore All Services →
-      </a>
+    <div class="services-link">
+      <a href="/services">Explore All Services →</a>
     </div>
   </section>
 
   <!-- Featured Projects Section -->
   {featuredProjects.length > 0 && (
-    <section style="margin: 5rem 0;">
-      <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center; color: #1e3a5f; font-weight: 700;">Featured Projects</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
+    <section class="featured-projects">
+      <h2>Featured Projects</h2>
+      <div class="projects-grid">
         {featuredProjects.map((project) => (
-          <article style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s;">
+          <article class="project-card">
             {project.data.image && (
-              <img 
-                src={project.data.image} 
-                alt={project.data.title}
-                style="width: 100%; height: 240px; object-fit: cover;"
-              />
+              <img src={project.data.image} alt={project.data.title} />
             )}
-            <div style="padding: 2rem;">
-              <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #1e3a5f; font-weight: 600;">{project.data.title}</h3>
-              <p style="color: #666; line-height: 1.7;">{project.data.description}</p>
+            <div class="project-info">
+              <h3>{project.data.title}</h3>
+              <p>{project.data.description}</p>
             </div>
           </article>
         ))}
       </div>
-      <div style="text-align: center; margin-top: 3rem;">
-        <a href="/projects" style="color: #c34d63; font-weight: 600; text-decoration: none; font-size: 1.15rem; border-bottom: 2px solid #c34d63; padding-bottom: 4px;">
-          View All Projects →
-        </a>
+      <div class="projects-link">
+        <a href="/projects">View All Projects →</a>
       </div>
     </section>
   )}
 
   <!-- Testimonials Section -->
   {recentTestimonials.length > 0 && (
-    <section style="margin: 5rem 0; padding: 4rem 2rem; background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%); border-radius: 16px; color: white;">
-      <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center; color: white; font-weight: 700;">What Our Clients Say</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1000px; margin: 0 auto;">
+    <section class="testimonials">
+      <h2>What Our Clients Say</h2>
+      <div class="testimonials-grid">
         {recentTestimonials.map((testimonial) => (
-          <blockquote style="background: rgba(255,255,255,0.95); padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-left: 5px solid #dca135; color: #333;">
-            <p style="font-style: italic; margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.05rem;">"{testimonial.data.quote}"</p>
+          <blockquote class="testimonial-card">
+            <p>"{testimonial.data.quote}"</p>
             <footer>
-              <strong style="color: #1e3a5f; font-size: 1.1rem;">{testimonial.data.name}</strong>
+              <strong>{testimonial.data.name}</strong>
               {testimonial.data.projectType && (
-                <div style="color: #666; font-size: 0.95rem; margin-top: 0.5rem;">{testimonial.data.projectType}</div>
+                <span>{testimonial.data.projectType}</span>
               )}
             </footer>
           </blockquote>
@@ -128,41 +110,409 @@ const recentTestimonials = testimonials
   )}
 
   <!-- Service Area -->
-  <section style="margin: 5rem 0; text-align: center;">
-    <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e3a5f; font-weight: 700;">Proudly Serving Southwest Florida</h2>
-    <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-      {home.serviceAreas}
-    </p>
+  <section class="service-area">
+    <h2>Proudly Serving Southwest Florida</h2>
+    <p>{home.serviceAreas}</p>
   </section>
 
   <!-- CTA Section -->
-  <section style="background: #c34d63; color: white; padding: 4rem 2rem; border-radius: 16px; margin: 5rem 0; text-align: center; box-shadow: 0 8px 24px rgba(195, 77, 99, 0.3);">
-    <h2 style="font-size: 2.75rem; margin-bottom: 1.5rem; color: white; font-weight: 700;">{home.ctaHeading}</h2>
-    <p style="margin-bottom: 2.5rem; font-size: 1.25rem; opacity: 0.95; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto;">
-      {home.ctaText}
-    </p>
-    <a href="/contact" style="display: inline-block; background: white; color: #c34d63; padding: 1.25rem 3rem; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.15rem; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-      Get Free Consultation
-    </a>
+  <section class="cta">
+    <h2>{home.ctaHeading}</h2>
+    <p>{home.ctaText}</p>
+    <a href="/contact" class="btn-cta">Get Free Consultation</a>
   </section>
 </BaseLayout>
 
 <style>
-  div:has(> h3) {
-    cursor: default;
+  .hero {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
+    color: white;
+    margin: -2rem -1.5rem 3rem;
+    border-radius: 0 0 16px 16px;
   }
-  div:has(> h3):hover {
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    opacity: 0.95;
+    line-height: 1.6;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: #c34d63;
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(195, 77, 99, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(195, 77, 99, 0.4);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+  }
+
+  .about {
+    margin: 4rem 0;
+    text-align: center;
+  }
+
+  .about-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .about h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 1.5rem;
+    color: #1e3a5f;
+    font-weight: 700;
+  }
+
+  .about-main {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-sub {
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    line-height: 1.8;
+    color: #666;
+  }
+
+  .services {
+    margin: 4rem 0;
+    padding: 3rem 1.5rem;
+    background: #f8f9fa;
+    border-radius: 16px;
+  }
+
+  .services h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2.5rem;
+    text-align: center;
+    color: #1e3a5f;
+    font-weight: 700;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 4px solid;
+  }
+
+  .service-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.12);
   }
-  article:hover {
+
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: #1e3a5f;
+    font-weight: 600;
+  }
+
+  .service-card p {
+    line-height: 1.7;
+    color: #666;
+  }
+
+  .services-link {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  .services-link a {
+    color: #c34d63;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #c34d63;
+    padding-bottom: 4px;
+  }
+
+  .featured-projects {
+    margin: 4rem 0;
+  }
+
+  .featured-projects h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2.5rem;
+    text-align: center;
+    color: #1e3a5f;
+    font-weight: 700;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .project-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .project-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   }
-  a[href="/contact"]:hover {
+
+  .project-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .project-info {
+    padding: 1.5rem;
+  }
+
+  .project-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: #1e3a5f;
+    font-weight: 600;
+  }
+
+  .project-info p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+
+  .projects-link {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  .projects-link a {
+    color: #c34d63;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #c34d63;
+    padding-bottom: 4px;
+  }
+
+  .testimonials {
+    margin: 4rem 0;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
+    border-radius: 16px;
+    color: white;
+  }
+
+  .testimonials h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: rgba(255,255,255,0.95);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-left: 5px solid #dca135;
+    color: #333;
+  }
+
+  .testimonial-card p {
+    font-style: italic;
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+    font-size: 1rem;
+  }
+
+  .testimonial-card footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .testimonial-card strong {
+    color: #1e3a5f;
+    font-size: 1.05rem;
+  }
+
+  .testimonial-card span {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .service-area {
+    margin: 4rem 0;
+    text-align: center;
+  }
+
+  .service-area h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 1.5rem;
+    color: #1e3a5f;
+    font-weight: 700;
+  }
+
+  .service-area p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: #666;
+  }
+
+  .cta {
+    background: #c34d63;
+    color: white;
+    padding: 3rem 1.5rem;
+    border-radius: 16px;
+    margin: 4rem 0;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(195, 77, 99, 0.3);
+  }
+
+  .cta h2 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .cta p {
+    margin-bottom: 2rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    opacity: 0.95;
+    line-height: 1.7;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+  }
+
+  .btn-cta {
+    display: inline-block;
+    background: white;
+    color: #c34d63;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .btn-cta:hover {
     transform: translateY(-2px);
   }
-  a[href="/projects"]:hover {
-    background: rgba(255,255,255,0.1);
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 3rem 1rem;
+      margin: -1.5rem -1rem 2rem;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      max-width: 280px;
+      text-align: center;
+    }
+
+    .services {
+      padding: 2rem 1rem;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      border-radius: 0;
+    }
+
+    .testimonials {
+      padding: 2rem 1rem;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      border-radius: 0;
+    }
+
+    .cta {
+      padding: 2rem 1rem;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      border-radius: 0;
+    }
+
+    .project-card img {
+      height: 180px;
+    }
   }
 </style>
