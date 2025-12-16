@@ -1,12 +1,13 @@
 # Decap CMS Configuration
-# Using GitHub backend with open-authoring for public repos
+# Using GitHub backend for public repos
 
 backend:
   name: github
   repo: Nickgcs7/park-shore-marble-tile
   branch: main
-  # For public repos, Decap can use GitHub's API directly
-  open_authoring: true
+
+# Publish mode - changes go live immediately
+publish_mode: editorial_workflow
 
 # Where uploaded images are stored
 media_folder: "public/images/uploads"
