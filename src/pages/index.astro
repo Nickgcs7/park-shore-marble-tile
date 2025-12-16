@@ -1,6 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import yaml from 'js-yaml';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Load home page content from data folder (outside content collections)
+const homeContent = yaml.load(
+  fs.readFileSync(path.join(process.cwd(), 'src/data/pages/home.yaml'), 'utf8')
+) as Record<string, string>;
 
 const projects = await getCollection('projects');
 const testimonials = await getCollection('testimonials');
@@ -18,9 +26,9 @@ const recentTestimonials = testimonials
 <BaseLayout title="Home">
   <!-- Hero Section -->
   <section style="text-align: center; padding: 5rem 2rem; background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%); color: white; margin: -2rem -2rem 4rem -2rem; border-radius: 0 0 16px 16px;">
-    <h1 style="font-size: 3.5rem; margin-bottom: 1rem; color: white; font-weight: 700; line-height: 1.2;">Premium Marble & Tile Installation</h1>
+    <h1 style="font-size: 3.5rem; margin-bottom: 1rem; color: white; font-weight: 700; line-height: 1.2;">{homeContent.heroHeading}</h1>
     <p style="font-size: 1.35rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.95; line-height: 1.6;">
-      Family owned and operated, serving Naples, Bonita Springs, Marco Island, and Southwest Florida with expert craftsmanship since 2010
+      {homeContent.heroSubheading}
     </p>
     <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
       <a href="/contact" style="display: inline-block; background: #c34d63; color: white; padding: 1.25rem 2.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(195, 77, 99, 0.3);">
@@ -35,12 +43,12 @@ const recentTestimonials = testimonials
   <!-- About Section -->
   <section style="margin: 5rem 0; text-align: center;">
     <div style="max-width: 900px; margin: 0 auto;">
-      <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e3a5f; font-weight: 700;">Southwest Florida's Trusted Marble & Tile Experts</h2>
+      <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e3a5f; font-weight: 700;">{homeContent.aboutHeading}</h2>
       <p style="font-size: 1.2rem; line-height: 1.9; color: #555; margin-bottom: 2rem;">
-        Park Shore Marble & Tile is a family-owned, full-service installation company dedicated to transforming spaces throughout Naples, Marco Island, Bonita Springs, and Fort Myers. From elegant marble countertops to stunning tile work, we bring decades of expertise to every project—backed by premium materials, meticulous attention to detail, and a commitment to exceeding expectations.
+        {homeContent.aboutText}
       </p>
       <p style="font-size: 1.1rem; line-height: 1.8; color: #666;">
-        Whether you're renovating your kitchen, designing a luxury bathroom, or completing a commercial space, our team provides personalized design assistance and professional installation from start to finish.
+        {homeContent.aboutText2}
       </p>
     </div>
   </section>
@@ -125,15 +133,15 @@ const recentTestimonials = testimonials
   <section style="margin: 5rem 0; text-align: center;">
     <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e3a5f; font-weight: 700;">Proudly Serving Southwest Florida</h2>
     <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-      Naples • Marco Island • Bonita Springs • Estero • Fort Myers • Fort Myers Beach • Cape Coral
+      {homeContent.serviceAreas}
     </p>
   </section>
 
   <!-- CTA Section -->
   <section style="background: #c34d63; color: white; padding: 4rem 2rem; border-radius: 16px; margin: 5rem 0; text-align: center; box-shadow: 0 8px 24px rgba(195, 77, 99, 0.3);">
-    <h2 style="font-size: 2.75rem; margin-bottom: 1.5rem; color: white; font-weight: 700;">Ready to Transform Your Space?</h2>
+    <h2 style="font-size: 2.75rem; margin-bottom: 1.5rem; color: white; font-weight: 700;">{homeContent.ctaHeading}</h2>
     <p style="margin-bottom: 2.5rem; font-size: 1.25rem; opacity: 0.95; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto;">
-      Contact us today for a free consultation and discover how we can bring your vision to life with expert craftsmanship and premium materials.
+      {homeContent.ctaText}
     </p>
     <a href="/contact" style="display: inline-block; background: white; color: #c34d63; padding: 1.25rem 3rem; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.15rem; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
       Get Free Consultation
