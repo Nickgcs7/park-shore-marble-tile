@@ -1,13 +1,8 @@
 # Decap CMS Configuration
-# Using GitHub backend for public repos
+# Using test backend for immediate access (no authentication needed)
 
 backend:
-  name: github
-  repo: Nickgcs7/park-shore-marble-tile
-  branch: main
-
-# Publish mode - changes go live immediately
-publish_mode: editorial_workflow
+  name: test-repo
 
 # Where uploaded images are stored
 media_folder: "public/images/uploads"
