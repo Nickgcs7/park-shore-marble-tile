@@ -1,17 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-// Import YAML content directly (Vite handles this at build time)
-import contactContent from '../data/pages/contact.yaml?raw';
-import yaml from 'js-yaml';
-
-const contact = yaml.load(contactContent) as Record<string, any>;
 ---
 
 <BaseLayout title="Contact">
   <div class="contact-header">
-    <h1>{contact.title}</h1>
-    <p>{contact.subtitle}</p>
+    <h1>Contact Us</h1>
+    <p>Ready to start your project? Get in touch for a free consultation</p>
   </div>
   
   <div class="contact-grid">
@@ -24,15 +18,15 @@ const contact = yaml.load(contactContent) as Record<string, any>;
       <div class="hours-box">
         <h3>Business Hours</h3>
         <div class="hours">
-          <p>{contact.businessHours.weekdays}</p>
-          <p>{contact.businessHours.saturday}</p>
-          <p>{contact.businessHours.sunday}</p>
+          <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+          <p>Saturday: 9:00 AM - 2:00 PM</p>
+          <p>Sunday: Closed</p>
         </div>
       </div>
 
       <div class="service-box">
         <h3>Service Areas</h3>
-        <p>{contact.serviceAreas}</p>
+        <p>We proudly serve Naples, Marco Island, Bonita Springs, Estero, Fort Myers, Fort Myers Beach, Cape Coral, and all of Southwest Florida.</p>
       </div>
     </section>
 

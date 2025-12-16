@@ -1,5 +1,2 @@
-title: test kitchen
-description: this is a bathroom we did
-image: /images/uploads/test-kitchen/image.jpeg
-date: 2025-12-16
-featured: false
+# DELETE THIS FILE
+# This file is causing build failures
