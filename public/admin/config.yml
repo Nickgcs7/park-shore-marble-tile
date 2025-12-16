@@ -1,12 +1,12 @@
 # Decap CMS Configuration
-# Documentation: https://decapcms.org/docs/
+# Using GitHub backend with open-authoring for public repos
 
 backend:
   name: github
   repo: Nickgcs7/park-shore-marble-tile
   branch: main
-  base_url: https://park-shore-marble-tile.pages.dev
-  auth_endpoint: api/auth
+  # For public repos, Decap can use GitHub's API directly
+  open_authoring: true
 
 # Where uploaded images are stored
 media_folder: "public/images/uploads"
