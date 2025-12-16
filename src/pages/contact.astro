@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact">
+  <h1 style="font-size: 2.5rem; margin-bottom: 2rem;">Contact Us</h1>
+  
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 3rem 0;">
+    <section>
+      <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem;">Get In Touch</h2>
+      <p style="line-height: 1.8; color: #555; margin-bottom: 2rem;">
+        Ready to start your project? Have questions about our services? 
+        Fill out the form and we'll get back to you as soon as possible.
+      </p>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Business Hours</h3>
+        <p style="color: #666;">Monday - Friday: 8:00 AM - 5:00 PM</p>
+        <p style="color: #666;">Saturday: 9:00 AM - 2:00 PM</p>
+        <p style="color: #666;">Sunday: Closed</p>
+      </div>
+    </section>
+
+    <section>
+      <form id="contact-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div>
+          <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Name *</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required
+            style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;"
+          />
+        </div>
+
+        <div>
+          <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email *</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required
+            style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;"
+          />
+        </div>
+
+        <div>
+          <label for="phone" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone"
+            style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;"
+          />
+        </div>
+
+        <div>
+          <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Message *</label>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="5" 
+            required
+            style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; resize: vertical;"
+          ></textarea>
+        </div>
+
+        <button 
+          type="submit"
+          style="background: #2c3e50; color: white; padding: 1rem 2rem; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: opacity 0.2s;"
+        >
+          Send Message
+        </button>
+
+        <div id="form-message" style="display: none; padding: 1rem; border-radius: 4px;"></div>
+      </form>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const messageDiv = document.getElementById('form-message') as HTMLDivElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        messageDiv.style.display = 'block';
+        messageDiv.style.background = '#d4edda';
+        messageDiv.style.color = '#155724';
+        messageDiv.textContent = 'Thank you! Your message has been sent successfully.';
+        form.reset();
+      } else {
+        throw new Error(result.error || 'Something went wrong');
+      }
+    } catch (error) {
+      messageDiv.style.display = 'block';
+      messageDiv.style.background = '#f8d7da';
+      messageDiv.style.color = '#721c24';
+      messageDiv.textContent = 'Sorry, there was an error sending your message. Please try again.';
+    }
+
+    setTimeout(() => {
+      messageDiv.style.display = 'none';
+    }, 5000);
+  });
+</script>
