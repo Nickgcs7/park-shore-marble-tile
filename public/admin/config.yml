@@ -5,8 +5,8 @@ backend:
   name: github
   repo: Nickgcs7/park-shore-marble-tile
   branch: main
-  # Cloudflare Pages - no auth proxy needed, uses GitHub directly
-  base_url: https://148ac556.park-shore-marble-tile.pages.dev
+  # Cloudflare Pages OAuth
+  base_url: https://park-shore-marble-tile.pages.dev
   auth_endpoint: api/auth
 
 # Local development: uncomment below and run `npx decap-server`
