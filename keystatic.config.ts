@@ -1,9 +1,11 @@
-import { config, fields, collection } from '@keystatic/core';
+import { config, fields, collection, singleton } from '@keystatic/core';
 
 export default config({
   storage: {
-    kind: 'github',
-    repo: 'Nickgcs7/park-shore-marble-tile',
+    kind: 'cloud',
+  },
+  cloud: {
+    project: 'parkshore/parkshoremarbletile',
   },
   collections: {
     projects: collection({
@@ -50,6 +52,39 @@ export default config({
           label: 'Date',
           defaultValue: { kind: 'today' },
         }),
+      },
+    }),
+  },
+  singletons: {
+    homePage: singleton({
+      label: 'Home Page',
+      path: 'src/content/pages/home',
+      format: { data: 'yaml' },
+      schema: {
+        title: fields.text({ label: 'Page Title' }),
+        heroHeading: fields.text({ label: 'Hero Heading' }),
+        heroSubheading: fields.text({ label: 'Hero Subheading', multiline: true }),
+        aboutSection: fields.text({ label: 'About Section', multiline: true }),
+      },
+    }),
+    servicesPage: singleton({
+      label: 'Services Page',
+      path: 'src/content/pages/services',
+      format: { data: 'yaml' },
+      schema: {
+        title: fields.text({ label: 'Page Title' }),
+        body: fields.text({ label: 'Content', multiline: true }),
+      },
+    }),
+    contactPage: singleton({
+      label: 'Contact Page',
+      path: 'src/content/pages/contact',
+      format: { data: 'yaml' },
+      schema: {
+        title: fields.text({ label: 'Page Title' }),
+        body: fields.text({ label: 'Contact Info', multiline: true }),
+        email: fields.text({ label: 'Email Address' }),
+        phone: fields.text({ label: 'Phone Number' }),
       },
     }),
   },
