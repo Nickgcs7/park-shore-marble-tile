@@ -1,42 +1,39 @@
 /**
- * GitHub OAuth Authentication Handler for Decap CMS
- * This function handles the OAuth callback from GitHub
+ * GitHub OAuth Initiator for Decap CMS
+ * This function redirects to GitHub for authorization
  */
 
 export async function onRequestGet(context) {
   const { request, env } = context;
   const url = new URL(request.url);
   
-  // Get the authorization code from the callback
+  // Check if this is a callback with a code (coming back from GitHub)
   const code = url.searchParams.get('code');
   
-  if (!code) {
-    return new Response('No authorization code provided', { status: 400 });
-  }
+  if (code) {
+    // This is the callback from GitHub - exchange code for token
+    try {
+      const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          client_id: env.OAUTH_GITHUB_CLIENT_ID,
+          client_secret: env.OAUTH_GITHUB_CLIENT_SECRET,
+          code: code,
+        }),
+      });
 
-  try {
-    // Exchange code for access token
-    const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        client_id: env.OAUTH_GITHUB_CLIENT_ID,
-        client_secret: env.OAUTH_GITHUB_CLIENT_SECRET,
-        code: code,
-      }),
-    });
+      const tokenData = await tokenResponse.json();
 
-    const tokenData = await tokenResponse.json();
+      if (tokenData.error) {
+        throw new Error(tokenData.error_description || tokenData.error);
+      }
 
-    if (tokenData.error) {
-      throw new Error(tokenData.error_description || tokenData.error);
-    }
-
-    // Return HTML that posts the token back to the CMS
-    const html = `
+      // Return HTML that posts the token back to the CMS
+      const html = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,6 +78,7 @@ export async function onRequestGet(context) {
   <script>
     (function() {
       function receiveMessage(e) {
+        console.log("Received message:", e.data);
         if (e.data === "authorizing:github") {
           window.opener.postMessage(
             'authorization:github:success:${JSON.stringify(tokenData)}',
@@ -100,19 +98,36 @@ export async function onRequestGet(context) {
 </body>
 </html>`;
 
-    return new Response(html, {
-      headers: {
-        'Content-Type': 'text/html',
-      },
-    });
-  } catch (error) {
-    console.error('OAuth error:', error);
-    return new Response(
-      `<html><body><h1>Authentication Error</h1><p>${error.message}</p></body></html>`,
-      { 
-        status: 500,
-        headers: { 'Content-Type': 'text/html' }
-      }
-    );
+      return new Response(html, {
+        headers: {
+          'Content-Type': 'text/html',
+        },
+      });
+    } catch (error) {
+      console.error('OAuth error:', error);
+      return new Response(
+        `<html><body><h1>Authentication Error</h1><p>${error.message}</p><p><a href="/admin">Back to CMS</a></p></body></html>`,
+        { 
+          status: 500,
+          headers: { 'Content-Type': 'text/html' }
+        }
+      );
+    }
   }
+  
+  // Initial request - redirect to GitHub for authorization
+  const clientId = env.OAUTH_GITHUB_CLIENT_ID;
+  if (!clientId) {
+    return new Response('OAuth not configured. Please add OAUTH_GITHUB_CLIENT_ID to environment variables.', { 
+      status: 500 
+    });
+  }
+  
+  // Build the GitHub authorization URL
+  const redirectUri = `${url.origin}/api/auth`;
+  const scope = 'repo,user'; // Permissions needed for CMS
+  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
+  
+  // Redirect to GitHub
+  return Response.redirect(githubAuthUrl, 302);
 }
