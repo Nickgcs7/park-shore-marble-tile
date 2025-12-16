@@ -31,7 +31,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
     <section class="contact-form-section">
-      <form id="contact-form">
+      <form action="https://formsubmit.co/parkshoremarble@gmail.com" method="POST">
+        <!-- FormSubmit configuration -->
+        <input type="hidden" name="_subject" value="New Contact Form Submission - Park Shore Marble & Tile">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://park-shore-marble-tile.pages.dev/thank-you">
+        <input type="text" name="_honey" style="display:none">
+        
         <div class="form-group">
           <label for="name">Name *</label>
           <input type="text" id="name" name="name" required />
@@ -59,8 +65,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <button type="submit">Send Message</button>
-
-        <div id="form-message"></div>
       </form>
     </section>
   </div>
@@ -237,13 +241,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     box-shadow: 0 6px 16px rgba(195, 77, 99, 0.4);
   }
 
-  #form-message {
-    display: none;
-    padding: 1.25rem;
-    border-radius: 8px;
-    font-weight: 500;
-  }
-
   .process {
     margin: 4rem 0;
     padding: 3rem 2rem;
@@ -325,48 +322,3 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
   }
 </style>
-
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const messageDiv = document.getElementById('form-message') as HTMLDivElement;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        messageDiv.style.display = 'block';
-        messageDiv.style.background = '#d4edda';
-        messageDiv.style.color = '#155724';
-        messageDiv.style.border = '2px solid #c3e6cb';
-        messageDiv.textContent = '✓ Thank you! Your message has been sent successfully. We\'ll be in touch soon.';
-        form.reset();
-      } else {
-        throw new Error(result.error || 'Something went wrong');
-      }
-    } catch (error) {
-      messageDiv.style.display = 'block';
-      messageDiv.style.background = '#f8d7da';
-      messageDiv.style.color = '#721c24';
-      messageDiv.style.border = '2px solid #f5c6cb';
-      messageDiv.textContent = '✗ Sorry, there was an error sending your message. Please try again or call us directly.';
-    }
-
-    setTimeout(() => {
-      messageDiv.style.display = 'none';
-    }, 6000);
-  });
-</script>

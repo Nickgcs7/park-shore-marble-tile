@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Thank You">
+  <div class="thank-you">
+    <div class="icon">✓</div>
+    <h1>Thank You!</h1>
+    <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
+    <a href="/" class="btn-home">Return to Home</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .thank-you {
+    text-align: center;
+    padding: 6rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .icon {
+    width: 80px;
+    height: 80px;
+    background: #28a745;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: #1e3a5f;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .btn-home {
+    display: inline-block;
+    background: #c34d63;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .btn-home:hover {
+    background: #a83d52;
+    transform: translateY(-2px);
+  }
+</style>
