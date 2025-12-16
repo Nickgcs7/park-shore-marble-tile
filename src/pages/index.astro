@@ -16,13 +16,16 @@ const recentTestimonials = testimonials
 ---
 
 <BaseLayout title="Home">
-  <!-- Hero Section -->
+  <!-- Hero Section with Background Image -->
   <section class="hero">
-    <h1>Premium Marble & Tile Installation</h1>
-    <p>Family owned and operated, serving Naples, Bonita Springs, Marco Island, and Southwest Florida with expert craftsmanship since 2010</p>
-    <div class="hero-buttons">
-      <a href="/contact" class="btn-primary">Get Free Consultation</a>
-      <a href="/projects" class="btn-secondary">View Our Work</a>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Premium Marble & Tile Installation</h1>
+      <p>Family owned and operated, serving Naples, Bonita Springs, Marco Island, and Southwest Florida with expert craftsmanship since 2010</p>
+      <div class="hero-buttons">
+        <a href="/contact" class="btn-primary">Get Free Consultation</a>
+        <a href="/projects" class="btn-secondary">View Our Work</a>
+      </div>
     </div>
   </section>
 
@@ -119,27 +122,51 @@ const recentTestimonials = testimonials
 
 <style>
   .hero {
+    position: relative;
     text-align: center;
-    padding: 4rem 1.5rem;
-    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
-    color: white;
+    padding: 6rem 1.5rem;
     margin: -2rem -1.5rem 3rem;
     border-radius: 0 0 16px 16px;
+    background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(30, 58, 95, 0.9) 0%, rgba(45, 90, 140, 0.85) 100%);
+    border-radius: 0 0 16px 16px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
   }
 
   .hero h1 {
     font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     font-weight: 700;
     line-height: 1.2;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 
   .hero p {
     font-size: clamp(1rem, 2.5vw, 1.35rem);
     max-width: 700px;
-    margin: 0 auto 2rem;
-    opacity: 0.95;
-    line-height: 1.6;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    color: #f0f4f8;
   }
 
   .hero-buttons {
@@ -152,26 +179,27 @@ const recentTestimonials = testimonials
   .btn-primary {
     display: inline-block;
     background: #c34d63;
-    color: white;
+    color: #ffffff;
     padding: 1rem 2rem;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
     font-size: 1rem;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 12px rgba(195, 77, 99, 0.3);
+    box-shadow: 0 4px 12px rgba(195, 77, 99, 0.4);
   }
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(195, 77, 99, 0.4);
+    box-shadow: 0 6px 16px rgba(195, 77, 99, 0.5);
+    background: #d45a70;
   }
 
   .btn-secondary {
     display: inline-block;
-    background: transparent;
-    border: 2px solid white;
-    color: white;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid #ffffff;
+    color: #ffffff;
     padding: 1rem 2rem;
     text-decoration: none;
     border-radius: 8px;
@@ -181,7 +209,7 @@ const recentTestimonials = testimonials
   }
 
   .btn-secondary:hover {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.25);
   }
 
   .about {
@@ -202,16 +230,16 @@ const recentTestimonials = testimonials
   }
 
   .about-main {
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.9;
-    color: #555;
+    color: #444;
     margin-bottom: 1.5rem;
   }
 
   .about-sub {
     font-size: clamp(0.95rem, 1.8vw, 1.1rem);
     line-height: 1.8;
-    color: #666;
+    color: #555;
   }
 
   .services {
@@ -244,6 +272,7 @@ const recentTestimonials = testimonials
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
     border-top: 4px solid;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
 
   .service-card:hover {
@@ -265,7 +294,7 @@ const recentTestimonials = testimonials
 
   .service-card p {
     line-height: 1.7;
-    color: #666;
+    color: #555;
   }
 
   .services-link {
@@ -274,12 +303,17 @@ const recentTestimonials = testimonials
   }
 
   .services-link a {
-    color: #c34d63;
+    color: #a83d52;
     font-weight: 600;
     text-decoration: none;
     font-size: 1.1rem;
-    border-bottom: 2px solid #c34d63;
+    border-bottom: 2px solid #a83d52;
     padding-bottom: 4px;
+  }
+
+  .services-link a:hover {
+    color: #8a3243;
+    border-bottom-color: #8a3243;
   }
 
   .featured-projects {
@@ -331,7 +365,7 @@ const recentTestimonials = testimonials
   }
 
   .project-info p {
-    color: #666;
+    color: #555;
     line-height: 1.7;
     font-size: 0.95rem;
   }
@@ -342,12 +376,17 @@ const recentTestimonials = testimonials
   }
 
   .projects-link a {
-    color: #c34d63;
+    color: #a83d52;
     font-weight: 600;
     text-decoration: none;
     font-size: 1.1rem;
-    border-bottom: 2px solid #c34d63;
+    border-bottom: 2px solid #a83d52;
     padding-bottom: 4px;
+  }
+
+  .projects-link a:hover {
+    color: #8a3243;
+    border-bottom-color: #8a3243;
   }
 
   .testimonials {
@@ -355,7 +394,6 @@ const recentTestimonials = testimonials
     padding: 3rem 1.5rem;
     background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
     border-radius: 16px;
-    color: white;
   }
 
   .testimonials h2 {
@@ -363,6 +401,7 @@ const recentTestimonials = testimonials
     margin-bottom: 2.5rem;
     text-align: center;
     font-weight: 700;
+    color: #ffffff;
   }
 
   .testimonials-grid {
@@ -374,12 +413,11 @@ const recentTestimonials = testimonials
   }
 
   .testimonial-card {
-    background: rgba(255,255,255,0.95);
+    background: #ffffff;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     border-left: 5px solid #dca135;
-    color: #333;
   }
 
   .testimonial-card p {
@@ -387,6 +425,7 @@ const recentTestimonials = testimonials
     margin-bottom: 1.25rem;
     line-height: 1.8;
     font-size: 1rem;
+    color: #333;
   }
 
   .testimonial-card footer {
@@ -401,7 +440,7 @@ const recentTestimonials = testimonials
   }
 
   .testimonial-card span {
-    color: #666;
+    color: #555;
     font-size: 0.9rem;
   }
 
@@ -419,12 +458,11 @@ const recentTestimonials = testimonials
 
   .service-area p {
     font-size: clamp(1rem, 2vw, 1.2rem);
-    color: #666;
+    color: #555;
   }
 
   .cta {
     background: #c34d63;
-    color: white;
     padding: 3rem 1.5rem;
     border-radius: 16px;
     margin: 4rem 0;
@@ -436,22 +474,23 @@ const recentTestimonials = testimonials
     font-size: clamp(1.75rem, 4vw, 2.75rem);
     margin-bottom: 1rem;
     font-weight: 700;
+    color: #ffffff;
   }
 
   .cta p {
     margin-bottom: 2rem;
     font-size: clamp(1rem, 2vw, 1.25rem);
-    opacity: 0.95;
     line-height: 1.7;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2rem;
+    color: #fce4e8;
   }
 
   .btn-cta {
     display: inline-block;
-    background: white;
+    background: #ffffff;
     color: #c34d63;
     padding: 1rem 2.5rem;
     text-decoration: none;
@@ -464,13 +503,15 @@ const recentTestimonials = testimonials
 
   .btn-cta:hover {
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
   }
 
   /* Mobile adjustments */
   @media (max-width: 768px) {
     .hero {
-      padding: 3rem 1rem;
+      padding: 4rem 1rem;
       margin: -1.5rem -1rem 2rem;
+      min-height: 400px;
     }
 
     .hero-buttons {
