@@ -4,6 +4,9 @@
 
 import type { APIRoute } from 'astro';
 
+// Opt out of prerendering - this is a dynamic route
+export const prerender = false;
+
 export const ALL: APIRoute = ({ redirect }) => {
   // Redirect to the integration-managed routes
   return redirect('/keystatic/', 307);
