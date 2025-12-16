@@ -1,8 +1,10 @@
 # Decap CMS Configuration
-# Using test backend for immediate access (no authentication needed)
+# Simple GitHub authentication - uses your GitHub account directly
 
 backend:
-  name: test-repo
+  name: github
+  repo: Nickgcs7/park-shore-marble-tile
+  branch: main
 
 # Where uploaded images are stored
 media_folder: "public/images/uploads"
