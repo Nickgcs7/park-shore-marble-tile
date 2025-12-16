@@ -1,8 +1,0 @@
-# DEPRECATED - DELETE THIS FILE
-# 
-# This was the old Decap CMS configuration.
-# It has been replaced by Keystatic (keystatic.config.ts in project root).
-#
-# The new CMS admin is at /keystatic instead of /admin
-#
-# DELETE THIS FILE and the entire public/admin/ directory.
